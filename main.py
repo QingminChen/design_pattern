@@ -15,6 +15,256 @@
 #
 # # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 
+#
+# class Story():
+#     """
+#     Interface for story creation
+#     """
+#
+#     def create_story(self):
+#         pass
+#
+# class ConcreteStory(Story):
+#     """
+#     Implements interface Story
+#     """
+#
+#     _story = "Creating story on ...\n"
+#
+#     def create_story(self):
+#         return self._story
+#
+#
+# # Since class StoryDecorator inherits Story this represents
+# # "is-a" relatonship
+# class StoryDecorator(Story):
+#
+#     """
+#     base class for decorators
+#     """
+#
+#     def __init__(self, decorated_story):
+#         # this is for "has-a" relationship with Story class
+#         self.decorated_story = decorated_story
+#
+#     def create_story(self):
+#         return self.decorated_story.create_story()
+#
+# class Facebook(StoryDecorator):
+#
+#     _platform = "Facebook"
+#
+#     def __init__(self, decorated_story):
+#         super().__init__(decorated_story)
+#
+#     def create_story(self):
+#         return f"{self.decorated_story.create_story()}- {self._platform}\n"
+#
+# class Instagram(StoryDecorator):
+#
+#     _platform = "Instagram"
+#
+#     def __init__(self, decorated_story):
+#         super().__init__(decorated_story)
+#
+#     def create_story(self):
+#         return f"{self.decorated_story.create_story()}- {self._platform}\n"
+#
+# class Whatsapp(StoryDecorator):
+#
+#     _platform = "Whatsapp"
+#
+#     def __init__(self, decorated_story):
+#         super().__init__(decorated_story)
+#
+#     def create_story(self):
+#         return f"{self.decorated_story.create_story()}- {self._platform}\n"
+#
+# class Linkedin(StoryDecorator):
+#
+#     _platform = "Linkedin"
+#
+#     def __init__(self, decorated_story):
+#         super().__init__(decorated_story)
+#
+#     def create_story(self):
+#         return f"{self.decorated_story.create_story()}- {self._platform}\n"
+#
+# class Snapchat(StoryDecorator):
+#
+#     _platform = "Snapchat"
+#
+#     def __init__(self, decorated_story):
+#         super().__init__(decorated_story)
+#
+#     def create_story(self):
+#         return f"{self.decorated_story.create_story()}- {self._platform}\n"
+#
+# def show_off():
+#     my_story = ConcreteStory()
+#     my_story = Facebook(Instagram(Whatsapp(Linkedin(Snapchat(my_story)))))
+#     print("Activating show off mode. Let's flood it on the platforms!")
+#     print(my_story.create_story())
+#
+# def professional():
+#     my_story = ConcreteStory()
+#     my_story = Linkedin(my_story)
+#     print("Let's keep it professional")
+#     print(my_story.create_story())
+#
+# if __name__ == '__main__':
+#     show_off()
+#     professional()
+
+#
+# class College:
+#     '''Resource-intensive object'''
+#
+#     def studyingInCollege(self):
+#         print("Studying In College....")
+#
+#
+# class CollegeProxy:
+#     '''Relatively less resource-intensive proxy acting as middleman.
+#      Instantiates a College object only if there is no fee due.'''
+#
+#     def __init__(self):
+#
+#         self.feeBalance = 1000
+#         self.college = None
+#
+#     def studyingInCollege(self):
+#
+#         print("Proxy in action. Checking to see if the balance of student is clear or not...")
+#         if self.feeBalance <= 500:
+#             # If the balance is less than 500, let him study.
+#             self.college = College()
+#             self.college.studyingInCollege()
+#         else:
+#
+#             # Otherwise, don't instantiate the college object.
+#             print("Your fee balance is greater than 500, first pay the fee")
+#
+#
+# """main method"""
+#
+# if __name__ == "__main__":
+#     print(str(id(1))) #140587298777392
+#
+#     # Instantiate the Proxy
+#     collegeProxy = CollegeProxy()
+#
+#     # Client attempting to study in the college at the default balance of 1000.
+#     # Logically, since he / she cannot study with such balance,
+#     # there is no need to make the college object.
+#     collegeProxy.studyingInCollege()
+#
+#     # Altering the balance of the student
+#     collegeProxy.feeBalance = 100
+#
+#     # Client attempting to study in college at the balance of 100. Should succeed.
+#     collegeProxy.studyingInCollege()
+
+#
+# class AbstractHandler(object):
+#     """Parent class of all concrete handlers"""
+#
+#     def __init__(self, nxt):
+#         """change or increase the local variable using nxt"""
+#
+#         self._nxt = nxt
+#
+#     def handle(self, request):
+#         """It calls the processRequest through given request"""
+#
+#         handled = self.processRequest(request)
+#
+#         """case when it is not handled"""
+#
+#         if not handled:
+#             self._nxt.handle(request)
+#
+#     def processRequest(self, request):
+#         """throws a NotImplementedError"""
+#
+#         raise NotImplementedError('First implement it !')
+#
+#
+# class FirstConcreteHandler(AbstractHandler):
+#     """Concrete Handler # 1: Child class of AbstractHandler"""
+#
+#     def processRequest(self, request):
+#         '''return True if request is handled '''
+#
+#         if 'a' < request <= 'e':
+#             print("This is {} handling request '{}'".format(self.__class__.__name__, request))
+#             return True
+#
+#
+# class SecondConcreteHandler(AbstractHandler):
+#     """Concrete Handler # 2: Child class of AbstractHandler"""
+#
+#     def processRequest(self, request):
+#         '''return True if the request is handled'''
+#
+#         if 'e' < request <= 'l':
+#             print("This is {} handling request '{}'".format(self.__class__.__name__, request))
+#             return True
+#
+#
+# class ThirdConcreteHandler(AbstractHandler):
+#     """Concrete Handler # 3: Child class of AbstractHandler"""
+#
+#     def processRequest(self, request):
+#         '''return True if the request is handled'''
+#
+#         if 'l' < request <= 'z':
+#             print("This is {} handling request '{}'".format(self.__class__.__name__, request))
+#             return True
+#
+#
+# class DefaultHandler(AbstractHandler):
+#     """Default Handler: child class from AbstractHandler"""
+#
+#     def processRequest(self, request):
+#         """Gives the message that the request is not handled and returns true"""
+#
+#         print("This is {} telling you that request '{}' has no handler right now.".format(self.__class__.__name__,
+#                                                                                           request))
+#         return True
+#
+#
+# class User:
+#     """User Class"""
+#
+#     def __init__(self):
+#         """Provides the sequence of handles for the users"""
+#
+#         initial = None
+#
+#         self.handler = FirstConcreteHandler(SecondConcreteHandler(ThirdConcreteHandler(DefaultHandler(initial))))
+#
+#     def agent(self, user_request):
+#         """Iterates over each request and sends them to specific handles"""
+#
+#         for request in user_request:
+#             self.handler.handle(request)
+#
+#
+# """main method"""
+#
+# if __name__ == "__main__":
+#     """Create a client object"""
+#     user = User()
+#
+#     """Create requests to be processed"""
+#
+#     string = "GeeksforGeeks"
+#     requests = list(string)
+#
+#     """Send the requests one by one, to handlers as per the sequence of handlers defined in the Client class"""
+#     user.agent(requests)
+
 
 # class Subject:
 #     """Represents what is being observed"""
