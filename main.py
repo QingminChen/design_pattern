@@ -575,35 +575,105 @@ class Visitor:
  These classes have a visit() method which is called by the
  accept() method of the Concrete Course_At_GFG classes."""
 
+#
+# class Instructor(Visitor):
+#     def visit(self, crop):
+#         crop.teaching(self)
+#
+#
+# class Student(Visitor):
+#     def visit(self, crop):
+#         crop.studying(self)
+#
+#
+# """creating objects for concrete classes"""
+# sde = SDE()
+# stl = STL()
+# dsa = DSA()
+#
+# """Creating Visitors"""
+# instructor = Instructor()
+# student = Student()
+#
+# """Visitors visiting courses"""
+# sde.accept(instructor)
+# sde.accept(student)
+#
+# stl.accept(instructor)
+# stl.accept(student)
+#
+# dsa.accept(instructor)
+# dsa.accept(student)
 
-class Instructor(Visitor):
-    def visit(self, crop):
-        crop.teaching(self)
 
 
-class Student(Visitor):
-    def visit(self, crop):
-        crop.studying(self)
+# import math
+#
+# def find_roots(a, b, c):
+#     x1_temp = -b + math.sqrt(b**2-4*a*c)
+#     x1 = x1_temp/a*(1/2)
+#     x2_temp = -b - math.sqrt(b**2-4*a*c)
+#     x2 = x2_temp/a*(1/2)
+#     if x1==x2:
+#        return (x1)
+#     else:
+#        return (x1,x2)
+#     return None
+#
+# print(find_roots(2, 10, 8));
+#
+# import collections
+#
+# Node = collections.namedtuple('Node', ['left', 'right', 'value'])
+#
+#
+# def contains(root, value):
+#     # [-10, -3, 0, 5, 9]
+#     #
+#     # def buildTree(left, right):
+#     #     if left > right:
+#     #         return None
+#     #     m = (left + right) // 2
+#     #     return TreeNode(nums[m], buildTree(left, m - 1), buildTree(m + 1, right))
+#     #
+#     # return buildTree(0, len(nums) - 1)
+#     # if
+#     pass
+#
+# n1 = Node(value=1, left=None, right=None)
+# n3 = Node(value=3, left=None, right=None)
+# n2 = Node(value=2, left=n1, right=n3)
+#
+# print(contains(n2, 3))
 
 
-"""creating objects for concrete classes"""
-sde = SDE()
-stl = STL()
-dsa = DSA()
+class TextInput:
+    def __init__(self, input=None):
+        self.input = input
+        self.charstring = ''
 
-"""Creating Visitors"""
-instructor = Instructor()
-student = Student()
+    def add(self, character):
+        self.charstring = charstring + character
 
-"""Visitors visiting courses"""
-sde.accept(instructor)
-sde.accept(student)
+    def get_value(self):
+        return self.charstring
 
-stl.accept(instructor)
-stl.accept(student)
 
-dsa.accept(instructor)
-dsa.accept(student)
+class NumericInput(TextInput):
+    def __init__(self):
+        super().__init__()
+
+    def add(self, digits):
+        if digits.isdigit():
+            self.charstring = self.charstring + str(digits)
+
+
+if __name__ == '__main__':
+    input = NumericInput()
+    input.add("1")
+    input.add("a")
+    input.add("0")
+    print(input.get_value())
 
 
 
